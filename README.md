@@ -1,43 +1,33 @@
 ## 💻 Sobre o projeto
 
-Adopet é um site fictício de adoção de pets, com funcionalidades para cadastro de tutores, de abrigos e de pets, além de solicitação de adoções. Nesse repositório o projeto será uma API Rest em Java do Adopet.
+Magnum FIPE
 
 ---
 
 ## ⚙️ Funcionalidades
 
-- [x] Cadastro/atualização de tutores;
-- [x] Cadastro de abrigos;
-- [x] Cadastro de pets do fipe;
-- [x] Listagem de pets disponíveis para adoção;
-- [x] Solicitação de adoção;
-- [x] Aprovação/reprovação de adoção;
+1. Criar um serviço REST na API-1 para acionar a ”carga inicial” dos dados de
+veículos.
 
----
+2. Implementar a lógica na API-1 para buscar as "marcas" no serviço da FIPE
+(https://deividfortuna.github.io/fipe/).
 
-## 🎨 Layout
+3. Configurar uma “Fila” para receber as "marcas" da API-1 e enviar uma por vez
+para a API-2 para processamento assíncrono.
 
-O projeto desse repositório é apenas a API Backend, mas existe um figma com o layout que está disponível neste link: <a href="https://www.figma.com/file/TlfkDoIu8uyjZNla1T8TpH?embed_host=notion&kind=&node-id=518%3A11&t=esSUkfGQEWUeUASj-1&type=design&viewer=1">Layout no Figma</a>
+4. Implementar a lógica na API-2 para buscar os "códigos" e "modelos" dos
+veículos no serviço da FIPE com base nas "marcas" recebidas da fila.
 
----
+5. Implementar a lógica na API-2 para salvar no banco de dados “SQL” as
+informações de "código", "marca" e "modelo" dos veículos encontrados no
+serviço da FIPE.
 
-## 🛠 Tecnologias
+6. Criar um serviço REST na API-1 para buscar as "marcas" armazenadas no
+banco de dados.
 
-As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do projeto:
+7. Criar um serviço REST na API-1 para buscar os "códigos", "modelos" e
+“observações” dos veículos por "marca" no banco de dados.
 
-- **[Java 17](https://www.oracle.com/java)**
-- **[Spring Boot 3](https://spring.io/projects/spring-boot)**
-- **[Maven](https://maven.apache.org)**
-- **[MySQL](https://www.mysql.com)**
-- **[Hibernate](https://hibernate.org)**
-- **[Flyway](https://flywaydb.org)**
+8. Criar um serviço REST na API-1 para salvar os dados alterados do veículo,
+como: "modelo" e “observações” no banco de dados.
 
----
-
-## 📝 Licença
-
-O projeto desse repositório foi desenvolvido por [Alura](https://www.alura.com.br) e utilizado nos cursos de boas práticas de programação com Java.
-
-Instrutor: [Rodrigo Ferreira](https://cursos.alura.com.br/user/rodrigo-ferreira)
-
----
