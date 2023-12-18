@@ -1,11 +1,9 @@
 package br.com.magnum.fipe.service;
 
 import br.com.magnum.fipe.dto.MarcaDto;
-import br.com.magnum.fipe.dto.ModeloDto;
 import br.com.magnum.fipe.model.Marca;
 import br.com.magnum.fipe.model.TipoVeiculo;
 import br.com.magnum.fipe.repository.MarcaRepository;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
