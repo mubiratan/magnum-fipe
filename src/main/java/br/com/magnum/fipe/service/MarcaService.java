@@ -5,6 +5,8 @@ import br.com.magnum.fipe.dto.ModeloDto;
 import br.com.magnum.fipe.model.Marca;
 import br.com.magnum.fipe.model.TipoVeiculo;
 import br.com.magnum.fipe.repository.MarcaRepository;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,28 +16,33 @@ import java.util.List;
 public class MarcaService {
     @Autowired
     private MarcaRepository repository;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados conversor = new ConverteDados();
 
     private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
-    private final String URL_MODELOS = "http://localhost:8080/modelos/";
     public void buscarMarcasFipe() {
         String json;
         List<Marca> marcas = null;
 
-        for(TipoVeiculo tipo : TipoVeiculo.values()) {
+        for(TipoVeiculo tipoVeiculo : TipoVeiculo.values()) {
             json = consumo.chamarApi(
                     URL_BASE
-                            + tipo.name().toLowerCase()
+                            + tipoVeiculo.name().toLowerCase()
                             + "/marcas");
 
             marcas = conversor.obterLista(json, Marca.class);
 
             repository.saveAll(marcas);
 
-            for(Marca marca : marcas)
-                consumo.chamarApi(URL_MODELOS + tipo + "/" + marca.getCodigo().toString());
+            for(Marca marca : marcas) {
+                marca.setMarca(tipoVeiculo);
+                rabbitTemplate.convertAndSend("marcas.recebidas", marca);
+            }
+
+            marcas.clear();
         }
     }
     public List<MarcaDto> listar() {

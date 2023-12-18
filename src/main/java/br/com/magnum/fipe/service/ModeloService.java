@@ -43,7 +43,7 @@ public class ModeloService {
     }
 
     public void atualizar(AtualizacaoModeloDto dto) {
-        Modelo modelo = repository.getReferenceById(dto.codigo());
+        Modelo modelo = repository.findByCodigo(dto.codigo());
         modelo.atualizarDados(dto);
     }
 }

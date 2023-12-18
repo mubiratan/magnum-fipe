@@ -13,6 +13,9 @@ public class Marca
     private Long id;
     private Long codigo;
     private String nome;
+    @Transient
+    private TipoVeiculo tipoVeiculo;
+
     public Marca(){}
     public Marca(Marca marca) {
         this.codigo = marca.codigo;
@@ -29,11 +32,20 @@ public class Marca
     public int hashCode() {
         return Objects.hash(id);
     }
-    public Long getId() { return id; }
+    public Long getId()
+    {
+        return id;
+    }
     public Long getCodigo() {
         return codigo;
     }
     public String getNome() {
         return nome;
+    }
+    public TipoVeiculo getTipoVeiculo() {
+        return tipoVeiculo;
+    }
+    public void setMarca(TipoVeiculo tipoVeiculo) {
+        this.tipoVeiculo = tipoVeiculo;
     }
 }

@@ -8,6 +8,8 @@ import br.com.magnum.fipe.repository.ModeloRepository;
 import br.com.magnum.fipe.service.MarcaService;
 import br.com.magnum.fipe.service.ModeloService;
 import jakarta.validation.Valid;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,9 @@ public class MarcaController {
     private MarcaService service;
     @Autowired
     private ModeloService modeloService;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @GetMapping("marcas-fipe")
     public ResponseEntity buscarMarcasFipe() {
         try {
