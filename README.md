@@ -31,3 +31,9 @@ banco de dados.
 8. Criar um serviço REST na API-1 para salvar os dados alterados do veículo,
 como: "modelo" e “observações” no banco de dados.
 
+
+
+
+Para executar o projeto, é necessário ter instalado na máquina:
+1) Mysql server;
+2) RabbitMQ com uma fila de nome 'marcas.recebidas' configurada.
