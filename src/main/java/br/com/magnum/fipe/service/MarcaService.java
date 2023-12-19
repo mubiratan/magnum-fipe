@@ -15,7 +15,7 @@ public class MarcaService {
     @Autowired
     private MarcaRepository repository;
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private EnviaParaFila fila;
 
     private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados conversor = new ConverteDados();
@@ -37,7 +37,7 @@ public class MarcaService {
 
             for(Marca marca : marcas) {
                 marca.setMarca(tipoVeiculo);
-                rabbitTemplate.convertAndSend("marcas.recebidas", marca);
+                fila.envia("marcas.recebidas", marca);
             }
 
             marcas.clear();
