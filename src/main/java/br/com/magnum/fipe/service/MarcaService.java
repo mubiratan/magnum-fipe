@@ -22,7 +22,9 @@ public class MarcaService {
 
     private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
     public void buscarMarcasFipe() {
+        final String topico = "marcas.recebidas";
         String json;
+
         List<Marca> marcas = null;
 
         for(TipoVeiculo tipoVeiculo : TipoVeiculo.values()) {
@@ -37,7 +39,7 @@ public class MarcaService {
 
             for(Marca marca : marcas) {
                 marca.setMarca(tipoVeiculo);
-                fila.envia("marcas.recebidas", marca);
+                fila.envia(topico, marca);
             }
 
             marcas.clear();

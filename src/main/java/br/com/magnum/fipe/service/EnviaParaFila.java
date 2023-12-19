@@ -9,6 +9,6 @@ public class EnviaParaFila {
     @Autowired
     private RabbitTemplate rabbitTemplate;
     public void envia(String topico, Object object) {
-        rabbitTemplate.convertAndSend("marcas.recebidas", object);
+        rabbitTemplate.convertAndSend(topico, object);
     }
 }
