@@ -16,8 +16,9 @@ public class MarcaService {
     private MarcaRepository repository;
     @Autowired
     private EnviaParaFila fila;
+    @Autowired
+    private ConsumoApi consumo;
 
-    private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados conversor = new ConverteDados();
 
     private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
